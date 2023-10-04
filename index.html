@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>converter</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="main-content">
+
+        <div class="btn-open"></div>
+        <div class="allbtn">
+            <div class="cross"></div>
+            <button>dec to bin </button>
+            <button>dec to hex </button>
+            <button>dec to oct </button> 
+            <button>bin to dec </button>
+            <button>bin to hex </button>
+            <button>bin to oct </button> 
+            <button>hex to bin </button>
+            <button>hex to dec </button>
+            <button>hex to oct </button> 
+            <button>oct to bin </button>
+            <button>oct to dec </button>
+            <button>oct to hex </button>
+
+        </div>
+
+
+        <div class="viwe-area">
+            <div class="error">
+                <p>invalid number</p>
+            </div>
+            <input type="text" placeholder="enter number">
+            <span id="view-base-number"></span>
+            <h3 id="result"></h3>
+            
+
+            <div class="author">
+                <p>developed by: reduan</p>
+                <a href="https://the-developer-1.netlify.app/">go-to</a>
+            </div>
+
+
+        </div>
+
+       
+
+    </div>
+
+    <script>
+
+
+
+
+const allbtn = document.querySelectorAll('.allbtn button');
+
+const input = document.querySelector('input');
+
+const main = document.querySelector('#mainclick');
+
+const result = document.querySelector('#result');
+
+const baseNumber = document.querySelector('#view-base-number');
+
+const erroeMsg = document.querySelector('.error');
+
+//error masage 
+function err (){
+    erroeMsg.style.display='flex' 
+    erroeMsg.style.opacity='1' 
+    setTimeout(() => {
+        erroeMsg.style.display='' 
+    erroeMsg.style.opacity=''
+    }, 1000);
+}
+
+// d to b
+allbtn[0].addEventListener('click',()=>{
+   
+    if(input.value<9){
+        err()
+    }
+
+  else{
+    var value = input.value;
+    var nmbr = Number(value);
+    var tostring = nmbr.toString(2)
+    result.innerHTML=tostring
+    baseNumber.innerHTML='binary'
+  }
+   
+
+})
+
+
+// d to h 
+allbtn[1].addEventListener('click',()=>{
+    if(input.value<9){
+        err()
+    }
+
+    else{
+        var value = input.value;
+        var nmbr = Number(value);
+        var tostring = nmbr.toString(16)
+        result.innerHTML=tostring
+        baseNumber.innerHTML='hexa'
+    }
+})
+
+
+// d to o
+allbtn[2].addEventListener('click',()=>{
+    
+    if(input.value<9){
+        err()
+    }
+
+    else{
+        var value = input.value;
+        var nmbr = Number(value);
+        var tostring = nmbr.toString(8)
+        result.innerHTML=tostring
+        baseNumber.innerHTML='octal'
+    }
+
+})
+
+
+
+
+
+
+
+
+// b to d
+
+allbtn[3].addEventListener('click',()=>{
+    
+   var inpvalue = input.value; 
+   const regex = /^[01]*$/
+   if(!regex.test(inpvalue)){
+    err()
+   }
+
+   else{
+        var par = parseInt(inpvalue,2);
+
+        result.innerHTML=par
+        baseNumber.innerHTML='decimal'
+   }
+
+
+
+    
+
+})
+
+
+
+
+
+//b to h
+allbtn[4].addEventListener('click',()=>{
+
+    var valuee = input.value;
+    const regex = /^[01]*$/
+
+ 
+
+    if(!regex.test(valuee)){
+        err()
+        baseNumber.innerHTML=' '
+    }
+
+    else{
+        var btohex = parseInt(valuee,2);
+        var n = btohex.toString(16);
+        result.innerHTML= n;
+        baseNumber.innerHTML='hexa'
+    }
+
+})
+
+
+
+//b to o
+allbtn[5].addEventListener('click',()=>{
+
+    var value = input.value;
+    const regex = /^[01]*$/
+
+    if(!regex.test(value)){
+        err()
+    }
+
+    else{
+        var btohex = parseInt(value,2);
+        var n = btohex.toString(8);
+        result.innerHTML= n;
+        baseNumber.innerHTML='octal'
+    }
+
+})
+
+
+//h to bin 
+
+allbtn[6].addEventListener('click',()=>{
+    var value = input.value;
+    const regex = /\b(?:0[xX])?[0-9A-Fa-f]+\b/g;
+    if(!regex.test(value)){
+        err()
+    }
+
+    else{
+       var h = parseInt(value,16)
+       var b = h.toString(2)
+       result.innerHTML=b;
+       baseNumber.innerHTML='binary'
+    }
+})
+
+
+
+
+
+
+
+
+
+//h to dec 
+
+allbtn[7].addEventListener('click',()=>{
+    var value = input.value;
+    const regex = /\b(?:0[xX])?[0-9A-Fa-f]+\b/g;
+    if(!regex.test(value)){
+        err()
+    }
+
+    else{
+       var h = parseInt(value,16)
+       var b = h.toString(10)
+       result.innerHTML=b;
+       baseNumber.innerHTML='decimal'
+    }
+})
+
+
+
+
+
+
+
+
+//h to oct 
+
+allbtn[8].addEventListener('click',()=>{
+    var value = input.value;
+    const regex = /\b(?:0[xX])?[0-9A-Fa-f]+\b/g;
+    if(!regex.test(value)){
+        err()
+    }
+
+    else{
+       var h = parseInt(value,16)
+       var b = h.toString(8)
+       result.innerHTML=b;
+       baseNumber.innerHTML='octal'
+    }
+})
+
+
+
+//o to bin 
+
+allbtn[9].addEventListener('click',()=>{
+    var value = input.value;
+    
+    const regex = /\b[0-7]+(?![0-7])\b/g;
+    if(!regex.test(value)){
+        err()
+    }
+
+    else{
+        var o = parseInt(value,8)
+        var b = o.toString(2)
+        result.innerHTML=b
+        baseNumber.innerHTML='binary'
+    }
+})
+
+
+
+//o to dec 
+
+allbtn[10].addEventListener('click',()=>{
+    var value = input.value;
+    const regex = /\b[0-7]+(?![0-7])\b/g;
+    if(!regex.test(value)){
+        err()
+    }
+
+    else{
+        var o = parseInt(value,8)
+        var b = o.toString(10)
+        result.innerHTML=b
+        baseNumber.innerHTML='decimal'
+    }
+})
+
+
+//o to hex 
+
+allbtn[11].addEventListener('click',()=>{
+    var value = input.value;
+    const regex = /\b[0-7]+(?![0-7])\b/g;
+    if(!regex.test(value)){
+        err()
+    }
+
+    else{
+        var o = parseInt(value,8)
+        var b = o.toString(16)
+        result.innerHTML=b
+        baseNumber.innerHTML='hexa'
+    }
+})
+
+
+
+
+
+
+    </script>
+
+
+    <style>
+        *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.main-content{
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(to right, #dae2f8, #d6a4a4);
+    position: relative;
+}
+
+.main-content::after{
+    width: 30px;
+    height: 30px;
+    background-color: black;
+    position: absolute;
+}
+
+
+.allbtn{
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    position: absolute;
+    background-color: #0f0e10;
+    border-radius:  0px 20px 20px 0px;
+    
+    
+}
+
+.allbtn button{
+    padding: 3px 5px;
+    border-radius: 4px;
+    outline: none;
+    border:none;
+    margin: 5px 0px;
+    text-transform: uppercase;
+    font-size: small;
+    background-color: #ffc107;
+    margin-left: 20px;
+    width: 100px;
+    box-shadow: 2px 2px #ffffff75;
+    
+}
+
+
+
+
+
+.viwe-area{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40vh;
+    background-color: #13182f;
+    flex-direction: column;
+    position: absolute;
+    bottom: 0;
+    margin: 0px auto ;
+}
+
+
+
+.viwe-area input {
+    width: 270px;
+    height: 30px;
+    font-weight: 400;
+    outline: none;
+    font-size: 18px;
+    border-radius: 13px;
+    border: 1px solid #b8020288;
+    padding: 20px 19px;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+.viwe-area h3{
+    padding: 6px 6px;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    font-size: 23px;
+    text-transform: uppercase;
+}
+
+.viwe-area button{
+    width: 70px;
+    height: 30px;
+    font-family: 'Poppins', sans-serif;
+    font-size: large;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 30px;
+}
+
+
+.allbtn button:active{
+    background-color: black;
+    color: #fff;
+}
+
+.viwe-area span{
+    font-family: 'Poppins', sans-serif;
+     color: rgb(255, 255, 255);
+    text-transform: uppercase;
+    padding: 10px 0px;
+    font-size: 24px;
+    font-weight: 600 ;
+}
+
+.author{
+  width: 100%;
+  text-align: center;
+  font-family: 'Poppins',sans-serif;
+  color: #ffc107;
+  position: absolute;
+  bottom: 21px;
+  font-size: small;
+}
+
+.author a{
+    text-decoration: none;
+    color: rgba(0, 255, 255, 0.495);
+}
+
+
+.error{
+    color: red;
+    font-size: 19px;
+    font-weight: 100;
+    font-family: 'Poppins',sans-serif;
+    height: 20px;
+    width: 220px;
+    border: 1px solid #fff;
+    background-color: #000000b0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 10px;
+    position: absolute;
+    top: 10%;
+    border-radius: 5px;
+    display:none;
+    opacity:0 ;
+    transition: all 0.5s;
+}
+
+
+@media screen and (width<=768px){
+    .main-content{
+        width: 100%;
+    }
+}
+
+    </style>
+
+    
+
+</body>
+</html>
